@@ -7,9 +7,6 @@ globals
   indices
   score-table
   proportions
-
-
-
 ]
 
 patches-own [strategy neighbourhood mean-total-payoff new-strategy  ]
@@ -21,11 +18,8 @@ clear-all-plots
 reset-ticks
 clear-output
 
-  ; aanmaken van de uitbetalingsmatrix:
   set payoff-matrix (list (list CC-payoff-reward     CD-payoff-sucker    )
                           (list DC-payoff-temptation DD-payoff-punishment))
-
- ;de lijsten van strategieen en kleuren
 
   set strategy-colors
   [
@@ -58,14 +52,13 @@ clear-output
 
 
 
-  set indices       n-values length strategies [ [x] -> x ] ; zet de strategieen om in een idex nummer
+  set indices       n-values length strategies [ [x] -> x ]
 
    ask patches
-  [ set neighbourhood (patch-set self neighbors) ; zet een omgeving van 8 buren rond om een patch.
+  [ set neighbourhood (patch-set self neighbors)
   ]
 
-
-ask patches [set strategy one-of indices] ; geeft alle patches een random strategie.
+ask patches [set strategy one-of indices]
 
 
 let sum-of-strategies sum map [ [s] -> run-result (word "start-" s) ] strategies
@@ -74,24 +67,16 @@ let sum-of-strategies sum map [ [s] -> run-result (word "start-" s) ] strategies
     run (word "set start-" s " " precision (runresult ( word "start-" s)  /  sum-of-strategies) 2)
   ]
 
-let strategy-bag map [ [i] -> rijtje i (1000 * run-result (word "start-" item i strategies)) ] indices     ;; normaliseerd de parameters beginend met start- en maakt een strategypool met de opgegeven verhoudingen
+let strategy-bag map [ [i] -> rijtje i (1000 * run-result (word "start-" item i strategies)) ] indices
 
 
 let strategy-pool reduce [ [x y] -> sentence x y ] strategy-bag
-
-
-
 
 ask patches
 [
  set strategy one-of strategy-pool  ; laat elke patch een random strategie kiezen uit de strategypool
  set pcolor item strategy colors    ; laat elke patch zijn kleur veranderen naar de kleur van de strategie die die in de vorige regel heeft gekozen.
 ]
-
-
-
-
-
 
 set score-table map [ [s] -> score-row-for s ] strategies
 end
@@ -108,7 +93,7 @@ to-report score-entry-for [ s1 s2 ]
   report mean n-values restarts [ score-for s1 s2 ]
 end
 
-to-report score-for [ s1 s2 ] ; Het berekenen van de scores
+to-report score-for [ s1 s2 ]
   let my-history       []
   let your-history     []
   let my-total-payoff  0
@@ -128,7 +113,7 @@ to-report play [ some-strategy my-history your-history ]
     random-action ] [ runresult (word some-strategy " my-history your-history") ]
 end
 
-to-report random-action  ;alle strategieen uitgewerkt met hun keuzes voor samenwerken of niet samenwerken.
+to-report random-action
   report one-of [0 1]
 end
 
@@ -161,13 +146,6 @@ end
 end
 
 
-
-
-
-
-
-
-
 to go
    ask patches
   [
@@ -183,7 +161,7 @@ ask patches
 
   if payoff-grid = false
   [
-    ask patches                         ;hier is een switch voor de visual-payoff-grid. als die op on staat is gelijk aan true dan zal de kleur combinatie van de payoff grind worden gebruikt anders zal de gewone kleucombinaties worden gebrukt.
+    ask patches
     [
       set strategy new-strategy
       set pcolor item strategy colors
@@ -205,7 +183,7 @@ ask patches
   let filtered-indices filter [ [i] -> item i frequencies > 0 ] indices
   let indices-sorted-by-proportion sort-by [ [f1 f2] -> item f1 frequencies > item f2 frequencies ] filtered-indices
 
-  foreach indices-sorted-by-proportion[ [i] -> output-print (word item i frequencies "\t" item i strategies)] ;  wordt hier geprint in output op interface
+  foreach indices-sorted-by-proportion[ [i] -> output-print (word item i frequencies "\t" item i strategies)]
 
 
   tick

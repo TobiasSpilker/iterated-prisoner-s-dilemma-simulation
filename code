@@ -74,8 +74,8 @@ let strategy-pool reduce [ [x y] -> sentence x y ] strategy-bag
 
 ask patches
 [
- set strategy one-of strategy-pool  ; laat elke patch een random strategie kiezen uit de strategypool
- set pcolor item strategy colors    ; laat elke patch zijn kleur veranderen naar de kleur van de strategie die die in de vorige regel heeft gekozen.
+ set strategy one-of strategy-pool
+ set pcolor item strategy colors
 ]
 
 set score-table map [ [s] -> score-row-for s ] strategies

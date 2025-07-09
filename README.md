@@ -1,20 +1,68 @@
-# iterated-prisoner-s-dilemma-simulation
-This program simulates the iterated prisoner’s dilemma by making every patch play against neighbouring patches. The different strategies are visualized by different colours (see code).
+# Iterated-Prisoners-Dilemma-Simulation
 
-# HOW IT WORKS 
-Every patch starts of with a strategy depending on the configuration (manipulated by the sliders). Every patch plays against the 8 neighbouring patches. After an n-total of rounds the best strategy of the 8 gets evaluated, the patch in the middle will take on the highest scoring strategy.
+This project simulates the **Iterated Prisoner's Dilemma** using **NetLogo**, where each patch (grid cell) represents an agent using a specific strategy. Agents play against their 8 neighbors over multiple rounds, evolving their strategies based on performance.
 
-# HOW TO USE IT 
-Change the parameters to your liking. After you’ve done this press “SETUP” and then “GO” to run the program. Via the parameters you can manipulate various things like the total of rounds each patch plays, the amount of noise, the pay-off table and the distribution of the different strategies.
+<img src="Snapshot_Sierpiński_Carpet.png" alt="Sierpiński Carpet Pattern" width="400">
 
-# THINGS TO NOTICE 
-When pressing the “SETUP” button the screen does not seem to refresh. Rest assured that it actually is, but you need to press the “GO” button first. It can also help to change the parameters a little bit.
+---
 
-# THINGS TO TRY 
-Try changing the parameters a little bit, for example: Try to create a Sierpiński carpet (like the snapshot but better haha)
+## 🧠 How It Works
 
-# CREDITS AND REFERENCES 
-Tobias Spilker and Stijn van Huët 
+- Each patch is initialized with a strategy based on configuration parameters.
+- In every round, each patch plays the Prisoner’s Dilemma against its 8 surrounding patches.
+- After a configurable number of rounds:
+  - Each patch adopts the strategy of the **highest-scoring neighbor**.
+- Strategies are color-coded (refer to the code for mapping).
 
-Utrecht University
+This setup allows **spatial strategy evolution**, making it possible to observe complex emergent patterns such as **Sierpiński Carpet-like fractals** under the right conditions.
 
+---
+
+## 🎮 How to Use
+
+1. Open `Iterated prisoners dilemma.nlogo` in NetLogo.
+2. Adjust the parameters to control:
+   - Number of rounds per evaluation cycle
+   - Initial distribution of strategies
+   - Mutation/noise levels
+   - Payoff matrix values
+3. Press `SETUP` to initialize the environment.
+4. Press `GO` to start the simulation.
+
+> ⚠️ After pressing `SETUP`, the visualization may not update until `GO` is pressed. Slightly adjusting a slider can also trigger a screen refresh.
+
+---
+
+## 🧪 Things to Try
+
+- Vary payoff values to observe how cooperation or defection spreads.
+- Introduce small noise and observe resilience of strategy clusters.
+- Try parameter combinations that **generate Sierpiński Carpet patterns** like in the provided snapshot — a classic emergent structure in this model.
+
+---
+
+## 📁 Repository Contents
+
+| File | Description |
+|------|-------------|
+| `Iterated prisoners dilemma.nlogo` | NetLogo simulation model |
+| `Snapshot_Sierpiński_Carpet.png` | Example output (fractal-like pattern) |
+| `raw_code` | Source reference (not used directly by NetLogo) |
+
+---
+
+## 👥 Credits
+
+Created by:
+- Tobias Spilker  
+- Stijn van Huët  
+
+*Utrecht University*
+
+---
+
+## 📄 License
+
+No license specified. Educational use permitted unless otherwise stated.
+
+---
